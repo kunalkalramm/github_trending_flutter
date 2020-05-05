@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:githubtoprepos/models/github_repository.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 
 class RepositoryCard extends StatelessWidget {
   final GithubRepository repoData;
@@ -21,6 +21,28 @@ class RepositoryCard extends StatelessWidget {
           subtitle: Text(repoData.author),
           leading: CircleAvatar(
             backgroundImage: NetworkImage(repoData.avatarUrl),
+          ),
+          trailing: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Icon(Icons.star, size: 16.0),
+                  Text(repoData.stars.toString())
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Icon(Icons.star, size: 16.0),
+                  Text(repoData.forks.toString())
+                ],
+              )
+            ],
           ),
         ),
       ),
