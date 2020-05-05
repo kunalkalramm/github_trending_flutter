@@ -28,6 +28,9 @@ dependencies:
   # Loading Spinners
   flutter_spinkit: ^4.1.2+1
 
+  # Browser custom tabs
+  flutter_custom_tabs: ^0.6.0
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
