@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:githubtoprepos/pages/repository_details_page.dart';
 import 'package:githubtoprepos/models/github_repository.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 
 class RepositoryCard extends StatelessWidget {
   final GithubRepository repoData;
@@ -15,12 +16,17 @@ class RepositoryCard extends StatelessWidget {
       child: Card(
         child: ListTile(
           onTap: () {
-            _launchUrl(context, repoData.repoUrl);
+            _launchDetailsPage(repoData, context);
           },
           title: Text(repoData.repoName),
           subtitle: Text(repoData.author),
-          leading: CircleAvatar(
-            backgroundImage: NetworkImage(repoData.avatarUrl),
+          leading: GestureDetector(
+            onTap: () {
+              _launchUrl(context, repoData.repoUrl);
+            },
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(repoData.avatarUrl),
+            ),
           ),
           trailing: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +44,7 @@ class RepositoryCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Icon(Icons.star, size: 16.0),
+                  Icon(Icons.flash_off, size: 16.0),
                   Text(repoData.forks.toString())
                 ],
               )
@@ -69,6 +75,23 @@ class RepositoryCard extends StatelessWidget {
       Scaffold.of(context).showSnackBar(snackbar);
       print(e.toString());
     }
+  }
+
+  void _launchDetailsPage(GithubRepository data, BuildContext context) {
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) {
+       return GithubRepositoryDetails(
+         repoName: data.repoName,
+         avatarUrl: data.avatarUrl,
+         authorName: data.author,
+         description: data.description,
+         languageColor: data.languageColor,
+         language: data.language,
+         forks: data.forks,
+         stars: data.stars
+       );
+      }
+    ));
   }
 }
 
