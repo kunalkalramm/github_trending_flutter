@@ -93,9 +93,7 @@ class _GithubRepositoryDetailsState extends State<GithubRepositoryDetails> {
                       label: "Repository Name", value: repoName),
                   RepositoryDetailsField(label: "Author", value: authorName),
                   RepositoryDetailsField(label: "Language", value: language),
-                  RepositoryDetailsField(
-                      label: "Description", value: description),
-                  Row()
+                  RepositoryDetailsField(label: "Description", value: description),
                 ],
               ),
             )),
